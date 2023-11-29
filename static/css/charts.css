@@ -1,0 +1,18 @@
+.btn{
+    border-radius: 30px;
+    margin: 5px;
+}
+.active-btn{
+    color: blue;
+    background-color: white;
+    border-color: blue;
+}
+
+.user-selection{
+    display: none;
+    flex-direction: row;
+}
+.user-checkbox{
+    margin-left: 30px;
+    padding: 3px;
+}

@@ -1,0 +1,110 @@
+body{
+    margin: 0%;
+    background-color: white;
+}
+.sidebar-wrapper{
+    /*width: 15%;*/
+    background-color: none;
+    background-image: linear-gradient(175deg, #00C1FF, #DF00FF) !important;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+}
+.logo{
+    display:flex;
+    flex-direction: column;
+}
+.img-logo {
+    object-fit: contain;
+    overflow: hidden;
+  }
+.text-logo{
+    font-family: 'Playfair Display SC', serif;
+    
+    
+    color:black;
+    text-shadow: 1px 0 white;
+}
+a{  
+    color: black;
+    text-decoration: none;
+}
+.nav-link i, .nav-link p{
+    color:white;
+    text-shadow: 3.5px 0 black;
+}
+
+.cards-container3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 180px;
+}
+.card-title{
+    font-weight: bolder;
+    margin:0 0 20px 0;
+}
+
+.counter{
+display: flex;
+align-items: center;
+margin: 15px;
+width: inherit;
+height: inherit;
+
+}
+.counter p{
+    font-size: larger;
+    font-weight: 900; 
+}
+
+.select-color{
+    margin: 2px 0 2px 20px;
+    width: 200px;
+}
+
+.form-div{
+    margin-top: 5px;
+}
+.form-control, .form-select{
+    border: 2px solid black;
+}
+.widget{
+    border: 2px solid black;
+    
+}
+.widget .card-title{
+    font-weight: bolder;
+}
+.chart-card{
+    width: 900px;
+    height: auto;
+    padding: 10px;
+   
+}
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+/*card css*/
+.card-container{
+    display: flex;
+    justify-content: center;
+}
+
+.user-card{
+    width: 30%;
+    height: auto;
+    background: linear-gradient(175deg, #00C1FF,#DF00FF);/* url();*/
+    border: 1px solid black;
+    color: white;;
+}
+
+.card-row{
+    display: flex;
+    flex-direction: row;
+}
