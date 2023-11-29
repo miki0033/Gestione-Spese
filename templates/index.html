@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+  <body>
+    <div class="navbar-container">
+      <div class="logo">
+        <img
+          class="img-logo"
+          src="{{url_for('static',filename='img/logo-white.png')}}"
+          alt="myFamily Bank"
+        />
+        <a class="navbar-brand" href="/"><h1>My Family Bank</h1> </a>
+      </div>
+      <nav class="navbar">
+        <div class="div-btn">
+          <a href="register" class="btn btn-white">Registrati</a>
+        </div>
+        <div class="div-btn">
+          <a href="login" class="btn btn-white">Login</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="content">
+      <div class="main-div">
+        <div class="title">
+          <h2>Tieni traccia delle spese di tutta la tua famiglia</h2>
+        </div>
+        <div class="div-img">
+          <img src="{{url_for('static',filename='img/famiglia-prato.jpeg')}}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="tri-zone">
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm div-card">
+          <div class="div-i">
+            <img src="{{url_for('static',filename='img/cassaforte-omini.jpeg')}}" alt="" />
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Applicazione adatta a tutti i membri della famiglia
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm div-card">
+          <div class="div-i">
+            <img src="{{url_for('static',filename='img/porcellino.jpg')}}" alt="" />
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Il modo più sicuro per tenere le tue spese sotto controllo
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm div-card">
+          <div class="div-i">
+            <img src="{{url_for('static',filename='img/risparmio-finanziario.jpg')}}" alt="" />
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Con i grafici potri tenere traccia delle tue spese
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ url_for('static', filename='js/index.js')}}"></script>
+    
+    <div class="footer-container">
+      <div class="following">
+        <h4>Seguici su:</h4>
+      </div>
+    </div>
+  </body>
+  {% endblock %}
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{{ url_for('static', filename='css/light-bootstrap-dashboard.css')}}"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <!--GOOGLE FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,700;1,400;1,700;1,900&family=Tilt+Prism&display=swap"
+      rel="stylesheet"
+    />
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    />
+    <!-- CSS Files -->
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      href="{{ url_for('static', filename='fontawesome/css/all.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/transition.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/register.css') }}"
+    />
+
+    <title>Modifica</title>
+  </head>
+  <body>
+    <div class="container main">
+      <!--Modifica Utenti-->
+      <div class="modify_user" style="display: {{view_user}};">
+        <form action="/modify_user/{{id}}" method="post">
+          <!-- url_for('modify_user/id') -->
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label bold">Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                name="firstName"
+                placeholder=""
+                value="{{fetch['nome']}}"
+                required=""
+              />
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label bold">Cognome</label>
+              <input
+                type="text"
+                class="form-control"
+                name="lastName"
+                placeholder=""
+                value="{{fetch['cognome']}}"
+                required=""
+              />
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label bold">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                value="{{fetch['email']}}"
+              />
+            </div>
+            <div class="col-12">
+              <label for="role" class="form-label bold">Ruolo:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="role"
+                name="role"
+                value="{{fetch['ruolo']}}"
+              />
+            </div>
+          </div>
+          <div class="center">
+            <button class="btn btn-primary btn-register" type="submit">
+              Salva cambiamenti
+            </button>
+          </div>
+        </form>
+      </div>
+      <!--Modifica spese-->
+      <div class="modify_expense" style="display: {{view_exp}};">
+        <form action="/modify_expense/{{id}}" method="post">
+          <!-- url_for('modify_expense/id') -->
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="importo" class="form-label bold">Importo:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="importo"
+                placeholder=""
+                value="{{fetch['importo']}}"
+                required=""
+              />
+            </div>
+
+            <div class="col-12 form-div">
+              <label for="categoria" class="form-label bold">Categoria:</label>
+              <select class="form-select" name="categoria">
+                
+                {% for ct in category %}
+
+                <option
+                  value="{{ct['categoria']}}"
+                  style="color: {{ct['colore']}}"
+                  {% if fetch['categoria']==ct['categoria'] %}selected{%endif%}
+                >
+                  {{ct['categoria']}}
+                </option>
+                {%endfor%}
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label for="data" class="form-label bold">Data:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="data"
+                name="data"
+                value="{{fetch['data']}}"
+              />
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label bold">Nota:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nota"
+                name="nota"
+                value="{{fetch['nota']}}"
+              />
+            </div>
+          </div>
+          <div class="center">
+            <button class="btn btn-primary btn-register" type="submit">
+              Salva cambiamenti
+            </button>
+          </div>
+        </form>
+      </div>
+      <!--Modifica categorie-->
+      <div class="modify_category" style="display: {{view_cat}};">
+        <form action="/modify_category/{{id}}" method="post">
+          <div class="col-12">
+              <label for="categoria" class="form-label bold">Categoria:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="categoria"
+                name="categoria"
+                value="{{fetch['categoria']}}"
+              />
+          </div>
+          <select class="form-select select-color" name="colore" style="background-color: {{fetch['colore']}} ;">
+              <!--SELECT COLORI-->
+              <option {% if fetch['colore']=='red' %}selected{%endif%} value="red" style="background-color: red;"></option>
+              <option {% if fetch['colore']=='cyan' %}selected{%endif%} value="cyan" style="background-color: cyan;"></option>
+              <option {% if fetch['colore']=='blue' %}selected{%endif%} value="blue" style="background-color: blue;"></option>
+              <option {% if fetch['colore']=='yellow' %}selected{%endif%} value="yellow" style="background-color: yellow;"></option>
+              <option {% if fetch['colore']=='lightgreen' %}selected{%endif%} value="lightgreen" style="background-color: lightgreen;"></option>
+              <option {% if fetch['colore']=='green' %}selected{%endif%} value="green" style="background-color: green;"></option>
+              <option {% if fetch['colore']=='orange' %}selected{%endif%} value="orange" style="background-color: orange;"></option>
+              <option {% if fetch['colore']=='pink' %}selected{%endif%} value="pink" style="background-color: pink;"></option>
+              <option {% if fetch['colore']=='purple' %}selected{%endif%} value="purple" style="background-color: purple;"></option>
+              <option {% if fetch['colore']=='brown' %}selected{%endif%} value="brown" style="background-color: brown;"></option>
+              <option {% if fetch['colore']=='gray' %}selected{%endif%} value="gray" style="background-color: gray;"></option>
+              <option {% if fetch['colore']=='black' %}selected{%endif%} value="black" style="background-color: black;"></option>
+              
+            </select>
+          <div class="center">
+              <button type="submit" class="btn btn-primary">Modifica categoria</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/select_color.js') }}"></script>
+  </body>
+</html>

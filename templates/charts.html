@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="{{ url_for('static', filename='css/light-bootstrap-dashboard.css')}}"
+        rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+
+    <!--GOOGLE FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,700;1,400;1,700;1,900&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    />
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    
+    
+    
+    <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transition.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/charts.css') }}" />
+    <title>Profilo Utente</title>
+  </head>
+  <body>
+    <div class="wrapper">
+        <div class="sidebar" data-color="blue">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="index.html" class="simple-text">
+                      <img class="img-logo logo-mini" src="{{ url_for('static', filename='img/logo-white.png') }}" alt="" width="90" height="72">
+                    </a>
+                    <h1 class="text-logo logo-normal">My Family Bank</h1>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile">
+                            <i class="fa-solid fa-user"></i>
+                            <p>Profilo Utente</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="family">
+                            <i class="fa-solid fa-users"></i>
+                            <p>Famiglia</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="expense">
+                            <i class="fa-solid fa-receipt"></i>
+                            <p>Transazioni</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="nav-link" href="chart">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <p>Grafici</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="profile">{{user}}</a>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="profile">
+                                    <span class="no-icon">Account</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="family">
+                                    <span class="no-icon">Famiglia</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout">
+                                    <span class="no-icon">Log out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid transition" id="page4">
+                    <div class="charts-btn">
+                        <button id="quotidiane" class="btn btn-primary active-btn">Quotidiane</button>
+                        <button id="mensili" class="btn btn-primary ">Mensili</button>
+                        <button id="periodiche" class="btn btn-primary ">Periodiche</button>
+                        <button id="tipologie" class="btn btn-primary ">Tipologie</button>
+                        <button id="confronto" class="btn btn-primary ">Confronto</button>
+                    </div>
+                    <div class="family-charts" id="{{session['codice_famiglia']}}">
+                        <div class="charts-option">
+                            <div id="period-selector1">
+                                <label for="period1" id="label1">Data:</label>
+                                <input type="date" name="" id="period1" value="{{date}}">
+                            </div>
+                            <div id="period-selector2" style="display: none;">
+                                <label for="period1" id="label2">Data fine:</label>
+                                <input type="date" name="" id="period2">
+                            </div>
+                            <div class="user-selector" style="display: none;">
+                                {% for elem in fetch %} <!--Fare ciclo sugli utenti della famiglia-->
+                                <div class="user-checkbox">
+                                    <input type="checkbox" id="{{elem['id']}}" class="form-check-input family-checkbox" name="family_user" value="{{elem['nome']}}">
+                                    <label for="{{elem['id']}}">{{elem['nome']}}</label><br>
+                                </div>
+                                {%endfor%}
+
+                            </div>
+                        </div>
+                        <div class="dailyChart">
+                        <canvas id="dailyChart" style="width:100%;max-width:700px">
+                        </canvas>
+                        </div>
+                        <div class="monthlyChart" style="display: none;">
+                            <canvas id="monthlyChart" style="width:100%;max-width:700px">
+                            </canvas>
+                        </div>
+                        <div class="periodChart" style="display: none;">
+                            <canvas id="periodChart" style="width:100%;max-width:700px">
+                            </canvas>
+                        </div>
+                        <div class="categoryChart" style="display: none;">
+                            <canvas id="categoryChart" style="width:100%;max-width:700px">
+                            </canvas>
+                        </div>
+                        <div class="compareChart" style="display: none;">
+                            <canvas id="compareChart" style="width:100%;max-width:700px">
+                            </canvas>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <ul class="footer-menu">
+                            <li>
+                                <a href="index">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index">
+                                    Company
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-center">
+                            © 2023
+                            <a href="index.html">My Family Bank</a>
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/menage.js') }}"></script>
+    
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+  </body>
+</html>
