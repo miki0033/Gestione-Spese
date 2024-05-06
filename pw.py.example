@@ -1,0 +1,13 @@
+import hashlib
+
+SECRET_KEY = b"<SECRET_KEY>"
+DBHOST = "<host>"
+DBUSER = "<user>"
+DBPW = "<pw>"
+DB = "<myfamilybank>"
+
+
+def pwEncode(pw):
+    m = hashlib.sha512(pw.encode("UTF-8"))
+    m = m.hexdigest()
+    return m
